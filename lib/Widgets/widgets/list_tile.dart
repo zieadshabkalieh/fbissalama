@@ -1,47 +1,41 @@
 import 'package:fbissalama/models/following.dart';
 import 'package:flutter/material.dart';
-ListTile eachTile(Following following, Text date,Text time,
-    Text source, Text destinatiom, Text price, Text isFav) {
-  // listID.add((leadingtext1.data.toString() + leadingtext2.data.toString()).replaceAll(RegExp('[^0-9]'), ''));
-  // print("eachtile = theID = $listID");
+import 'package:provider/provider.dart';
+ListTile eachTile(context, favorite) {
+  var following = Provider.of<Following>(context);
   return ListTile(
     leading: Column(
       children: [
-        date,
+        favorite.date,
         const SizedBox(
           height: 10,
         ),
-        time,
+        favorite.time,
       ],
     ),
     title: Row(
       children: [
-        source,
+        favorite.source,
         const SizedBox(width: 50,),
-        price
+        favorite.price
       ],
     ),
-    subtitle: destinatiom,
-    trailing:
-    IconButton(
-      icon: (isFav != "false")
+    subtitle: favorite.destination,
+    trailing: IconButton(
+      icon: following.list.contains(favorite)
           ? const Icon(Icons.favorite)
           : const Icon(Icons.favorite_border_outlined),
       onPressed: () {
-        if (isFav != "false"){
-        // following.followingListdate.contains(leadingtext1.data) && following.followingListtime.contains(leadingtext2.data) &&
-        // following.followingListdestination.contains(source.data) &&
-        //     following.followingListsource.contains(destinatiom.data)) {
-          following.remove(
-            // leadingtext1.data, leadingtext2.data,
-              source.data,
-              destinatiom.data);
+        print(following.list.contains(favorite));
+        print(favorite);
+        if (following.list.contains(favorite)){
+          following.remove(favorite);
         } else {
-          following.add(
-            // leadingtext1.data, leadingtext2.data,
-              source.data,
-              destinatiom.data);
+          print(following.list);
+          following.add(favorite);
         }
+        print(following.list.contains(favorite));
+        print(following.list);
       },
     ),
   );

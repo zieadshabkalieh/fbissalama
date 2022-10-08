@@ -123,7 +123,7 @@ class _AddJourneyPage extends State<AddJourneyPage> {
                               textColor: Colors.white);
                         } else if (sourceCity == destenationCity) {
                           Fluttertoast.showToast(
-                              msg: 'It is not possible for source city same destination city',
+                              msg: 'It isn\'t possible source city is the same of the destination city',
                               fontSize: 14,
                               gravity: ToastGravity.BOTTOM,
                               backgroundColor: Colors.red,

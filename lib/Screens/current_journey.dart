@@ -43,7 +43,6 @@ class _CurrentJourneyPageState extends State<CurrentJourneyPage> {
               itemBuilder: (BuildContext context, DataSnapshot snapshot,
                   Animation animation, int index) {
                 try {
-                  Following following = Provider.of<Following>(context);
                   return Consumer<Following>(
                     builder:
                         (BuildContext context, Following value, Widget? child) {
@@ -66,9 +65,7 @@ class _CurrentJourneyPageState extends State<CurrentJourneyPage> {
                                   Text(Map<String, dynamic>.from(
                                       snapshot.value as Map)[Consts.pathDestinationCity]),
                                   Text(Map<String, dynamic>.from(
-                                      snapshot.value as Map)[Consts.pathPriceJourney]),
-                                  Text(Map<String, dynamic>.from(
-                                      snapshot.value as Map)[Consts.pathIsFavorite])),
+                                      snapshot.value as Map)[Consts.pathPriceJourney]),),
                             ]),
                         onDismissed: (direction) =>
                             dismissItem(context, index, direction),

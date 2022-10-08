@@ -17,31 +17,28 @@ class FavoritePage extends StatelessWidget {
     itemBuilder: (BuildContext context, DataSnapshot snapshot,
     Animation animation, int index) {
     try {
-    Following following = Provider.of<Following>(context);
-    return Consumer<Following>(
-    builder:
-    (BuildContext context, Following value, Widget? child) {
+    // Following following = Provider.of<Following>(context);
+    // return Consumer<Following>(
+    // builder:
+    // (BuildContext context, Following value, Widget? child) {
     return ListView(
     scrollDirection: Axis.vertical,
     shrinkWrap: true,
     children: <Widget>[
-    eachTile(
-    following,
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathDateJourney]),
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathTimeJourney]),
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathSourceCity]),
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathDestinationCity]),
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathPriceJourney]),
-    Text(Map<String, dynamic>.from(
-    snapshot.value as Map)[Consts.pathIsFavorite])),
+    // eachTile(
+    // Text(Map<String, dynamic>.from(
+    // snapshot.value as Map)[Consts.pathDateJourney]),
+    // Text(Map<String, dynamic>.from(
+    // snapshot.value as Map)[Consts.pathTimeJourney]),
+    // Text(Map<String, dynamic>.from(
+    // snapshot.value as Map)[Consts.pathSourceCity]),
+    // Text(Map<String, dynamic>.from(
+    // snapshot.value as Map)[Consts.pathDestinationCity]),
+    // Text(Map<String, dynamic>.from(
+    // snapshot.value as Map)[Consts.pathPriceJourney]),
     ]);
-    },
-    );
+    // },
+    // );
     } catch (e) {
       customSnackBar(context, e.toString(), 3, Colors.white24, Colors.brown, 17);
     return const Text(
