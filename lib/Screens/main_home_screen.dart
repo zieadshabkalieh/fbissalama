@@ -1,17 +1,14 @@
-import 'package:fbissalama/Screens/LoginScreen/LoginScreen.dart';
-import 'package:fbissalama/controller/auth_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fbissalama/Services/auth.dart';
+import 'package:fbissalama/Widgets/NavigationDrawer/navigation_drawer.dart';
+import 'package:fbissalama/Widgets/widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainHome extends StatelessWidget {
   const MainHome({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    final _firebaseAuth = FirebaseAuth.instance;
-
     return Scaffold(
       body: Center(
         child: Column(
@@ -20,7 +17,7 @@ class MainHome extends StatelessWidget {
             Text(
               "Welcome",
               style: GoogleFonts.arya(
-                textStyle: TextStyle(fontSize: 60, color: Colors.red),
+                textStyle: const TextStyle(fontSize: 60, color: Colors.red),
               ),
             ),
             const Icon(
@@ -32,16 +29,21 @@ class MainHome extends StatelessWidget {
               child: const Text('Log Out'),
               onPressed: () {
                 try {
-                  _firebaseAuth.signOut();
-                  Navigator.pop(context);
+                  Auth().logout(context);
+                  Navigator.of(context).pushReplacementNamed('/');
                 } catch (e) {
-                    
+                  customSnackBar(context, e.toString(), 3, Colors.white24, Colors.brown, 17);
                 }
               },
             )
           ],
         ),
       ),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text('Home'),
+      ),
+      drawer: const NavigationDrawer(),
     );
   }
 }

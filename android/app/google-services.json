@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1033632071258:android:9790f416defa26b9832263",
-        "android_client_info": {
-          "package_name": "com.example.bsalama"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1033632071258-js6rppnt32rvofe2lhh9jebbon7ad7t2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.bsalama",
-            "certificate_hash": "651151156c0256019b4566f3a6d10118817d5a5b"
-          }
-        },
-        {
-          "client_id": "1033632071258-23sblf3a69j8ii0tj9k5e4342k2et0fl.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD08LgUxK74JdAABzdQdD7yRWZeYIz3F0w"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1033632071258-23sblf3a69j8ii0tj9k5e4342k2et0fl.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1033632071258:android:e3685aee6ee0eed3832263",
         "android_client_info": {
           "package_name": "com.example.fbissalama"
@@ -52,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1033632071258-i9g28s63g1nmnkofl337lir8o95jcune.apps.googleusercontent.com",
+          "client_id": "1033632071258-djkuqtrh2pgov8i3tvkbs7l7tle2lni9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fbissalama",
-            "certificate_hash": "784e25657743628fb62fcb365ca146f72d8c4868"
+            "certificate_hash": "7ea62be06bd660ac1f572279816cc24c21f2effe"
           }
         },
         {

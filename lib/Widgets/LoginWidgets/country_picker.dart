@@ -8,11 +8,12 @@ class CountryPicker extends StatefulWidget {
 }
 
 class CountryPickerState extends State<CountryPicker> {
+  //TODO we should use provider here
   String dialCodeDigits = '+963';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       height: size.height / 17,
       width: size.width / 3.20,
       child: CountryCodePicker(
@@ -24,12 +25,12 @@ class CountryPickerState extends State<CountryPicker> {
         initialSelection: 'SY',
         showCountryOnly: true,
         showOnlyCountryWhenClosed: false,
-        favorite: ['+963','SY'],
+        favorite: const ['+963','SY'],
         enabled: true,
         hideMainText: false,
         showFlagMain: true,
         showFlag: true,
-        textStyle: GoogleFonts.lobster(textStyle: TextStyle(color: Colors.white)),
+        textStyle: GoogleFonts.lobster(textStyle: const TextStyle(color: Colors.white)),
       ),
     );
   }

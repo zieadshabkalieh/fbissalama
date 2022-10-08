@@ -2,23 +2,23 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class TimerApp extends StatelessWidget {
+  const TimerApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MyTimer();
+    return const MyTimer();
   }
 }
 
 class MyTimer extends StatefulWidget {
-  MyTimer();
+  const MyTimer({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyTimer> {
+class MyHomePageState extends State<MyTimer> {
   int seconds = 60;
   Timer? _timer;
 

@@ -1,5 +1,5 @@
 
-import 'package:fbissalama/Screens/SplashScreen/splashscreen.dart';
+import 'package:fbissalama/Screens/splashscreen.dart';
 import 'package:fbissalama/utilities/routes.dart';
 import 'package:flutter/material.dart';
 

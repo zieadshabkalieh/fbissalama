@@ -1,27 +1,50 @@
-import 'package:fbissalama/Screens/LoginScreen/LoginScreen.dart';
-import 'package:fbissalama/Screens/MainHomeScreen/MainHomeScreen.dart';
-import 'package:fbissalama/Screens/SplashScreen/splashscreen.dart';
+import 'package:fbissalama/Screens/about_page.dart';
+import 'package:fbissalama/Screens/favorite_journey.dart';
+import 'package:fbissalama/Screens/settings.dart';
+import 'package:fbissalama/Screens/add_journey.dart';
+import 'package:fbissalama/Screens/current_journey.dart';
+import 'package:fbissalama/Screens/main_home_screen.dart';
+import 'package:fbissalama/Screens/sign_in_screen.dart';
+import 'package:fbissalama/Screens/splashscreen.dart';
+import 'package:fbissalama/models/following.dart';
+import 'package:fbissalama/models/verifying.dart';
 import 'package:fbissalama/utilities/router.dart';
 import 'package:fbissalama/utilities/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Bissalama",
-      onGenerateRoute: onGenerate,
-      initialRoute: AppRoutes.splashScreenPage,
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        AppRoutes.loginPage: (context) => LoginScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        AppRoutes.splashScreenPage: (context) => const SplashScreen(),
-        AppRoutes.MainHomePage: (context) => const MainHome()
-      },
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Following>(
+          create: (BuildContext context) => Following(),
+        ),
+        ChangeNotifierProvider<Verifying>(
+          create: (BuildContext context) => Verifying(),
+        ),
+        //TODO
+        //Add AuthController Here...
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Bissalama",
+        onGenerateRoute: onGenerate,
+        initialRoute: AppRoutes.splashScreenPage,
+        routes: {
+          AppRoutes.loginPage: (context) => const SignInScreen(),
+          AppRoutes.splashScreenPage: (context) => const SplashScreen(),
+          AppRoutes.mainHomePage: (context) => const MainHome(),
+          AppRoutes.addJourneyPage: (context) => const AddJourneyPage(),
+          AppRoutes.currentJourneyPage: (context) => const CurrentJourneyPage(),
+          AppRoutes.favoriteJourneyPage: (context) => const FavoritePage(),
+          AppRoutes.settingsPage: (context) => const SettingsPage(),
+          AppRoutes.aboutPage: (context) => const AboutPage(),
+        },
+      ),
     ),
   );
 }
