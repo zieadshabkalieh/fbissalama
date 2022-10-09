@@ -1,5 +1,6 @@
 import 'package:fbissalama/Widgets/widgets/custom_snack_bar.dart';
 import 'package:fbissalama/Widgets/widgets/list_tile.dart';
+import 'package:fbissalama/models/favorite.dart';
 import 'package:fbissalama/models/following.dart';
 import 'package:fbissalama/utilities/constants.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -54,8 +55,7 @@ class _CurrentJourneyPageState extends State<CurrentJourneyPage> {
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             children: <Widget>[
-                              eachTile(
-                                  following,
+                              eachTile(value, Favorite(
                                   Text(Map<String, dynamic>.from(
                                       snapshot.value as Map)[Consts.pathDateJourney]),
                                   Text(Map<String, dynamic>.from(
@@ -65,7 +65,7 @@ class _CurrentJourneyPageState extends State<CurrentJourneyPage> {
                                   Text(Map<String, dynamic>.from(
                                       snapshot.value as Map)[Consts.pathDestinationCity]),
                                   Text(Map<String, dynamic>.from(
-                                      snapshot.value as Map)[Consts.pathPriceJourney]),),
+                                      snapshot.value as Map)[Consts.pathPriceJourney]),),),
                             ]),
                         onDismissed: (direction) =>
                             dismissItem(context, index, direction),
@@ -81,8 +81,47 @@ class _CurrentJourneyPageState extends State<CurrentJourneyPage> {
         ]),
       ),
     );
+
   }
 
+  ListTile eachTile(following, favorite) {
+    return ListTile(
+      leading: Column(
+        children: [
+          favorite.date,
+          const SizedBox(
+            height: 10,
+          ),
+          favorite.time,
+        ],
+      ),
+      title: Row(
+        children: [
+          favorite.source,
+          const SizedBox(width: 50,),
+          favorite.price
+        ],
+      ),
+      subtitle: favorite.destination,
+      trailing: IconButton(
+        icon: following.list.contains(favorite)
+            ? const Icon(Icons.favorite)
+            : const Icon(Icons.favorite_border_outlined),
+        onPressed: () {
+          print(following.list.contains(favorite));
+          print(favorite);
+          if (following.list.contains(favorite)) {
+            following.remove(favorite);
+          } else {
+            print(following.list);
+            following.add(favorite);
+          }
+          print(following.list.contains(favorite));
+          print(following.list);
+        },
+      ),
+    );
+  }
   Future<void> dismissItem(
     BuildContext context,
     int index,

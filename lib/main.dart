@@ -33,7 +33,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         title: "Bissalama",
         onGenerateRoute: onGenerate,
-        initialRoute: AppRoutes.splashScreenPage,
+        initialRoute: AppRoutes.mainHomePage,
         routes: {
           AppRoutes.loginPage: (context) => const SignInScreen(),
           AppRoutes.splashScreenPage: (context) => const SplashScreen(),
