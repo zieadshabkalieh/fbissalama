@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+
 //TODO 1-dispose splash screen 2- when we get back from otp to main screen we should kill it
 abstract class AuthBase {
   // Future<User?> signInWithEmailAndPassword(String email, String password);
@@ -93,13 +94,13 @@ class Auth implements AuthBase {
     try {
       GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
       GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount!.authentication;
+          await googleSignInAccount!.authentication;
       AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
       UserCredential userCredential =
-      await _firebaseAuth.signInWithCredential(credential);
+          await _firebaseAuth.signInWithCredential(credential);
       storeTokenAndData(userCredential);
       if (!mounted) return;
       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
@@ -114,9 +115,10 @@ class Auth implements AuthBase {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: number,
       //TODO we should use this when verification complete
-      verificationCompleted: (PhoneAuthCredential credential) async { },
+      verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseException e) {
-        customSnackBar(context, e.message.toString(), 3, Colors.white24, Colors.brown, 17);
+        customSnackBar(
+            context, e.message.toString(), 3, Colors.white24, Colors.brown, 17);
       },
       codeSent: (String vID, int? resendToken, [bool mounted = true]) async {
         Provider.of<Verifying>(context, listen: false).changevID(vID);
@@ -150,8 +152,7 @@ class Auth implements AuthBase {
   void storeTokenAndData(UserCredential userCredential) async {
     await storage.write(
         key: "token", value: userCredential.credential!.token.toString());
-    await storage.write(
-        key: "credential", value: userCredential.toString());
+    await storage.write(key: "credential", value: userCredential.toString());
   }
 
   Future<String?> getToken() async {

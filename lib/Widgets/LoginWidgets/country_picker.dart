@@ -1,15 +1,12 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:fbissalama/models/provider_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class CountryPicker extends StatefulWidget {
-  const CountryPicker({Key? key}) : super(key: key);
-  @override
-  State<CountryPicker> createState() => CountryPickerState();
-}
+import 'package:provider/provider.dart';
 
-class CountryPickerState extends State<CountryPicker> {
-  //TODO we should use provider here
-  String dialCodeDigits = '+963';
+class CountryPicker extends StatelessWidget {
+  const CountryPicker({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,19 +15,19 @@ class CountryPickerState extends State<CountryPicker> {
       width: size.width / 3.20,
       child: CountryCodePicker(
         onChanged: (country) {
-          setState(() {
-            dialCodeDigits = country.dialCode!;
-          });
+          Provider.of<ProviderController>(context, listen: false)
+              .dialCodeDigits = country.toString();
         },
         initialSelection: 'SY',
         showCountryOnly: true,
         showOnlyCountryWhenClosed: false,
-        favorite: const ['+963','SY'],
+        favorite: const ['+963', 'SY'],
         enabled: true,
         hideMainText: false,
         showFlagMain: true,
         showFlag: true,
-        textStyle: GoogleFonts.lobster(textStyle: const TextStyle(color: Colors.white)),
+        textStyle: GoogleFonts.lobster(
+            textStyle: const TextStyle(color: Colors.white)),
       ),
     );
   }

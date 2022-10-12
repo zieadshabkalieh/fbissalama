@@ -6,29 +6,22 @@ import 'package:fbissalama/Widgets/LoginWidgets/text_fields.dart';
 import 'package:fbissalama/Widgets/widgets/drop_down.dart';
 import 'package:fbissalama/Widgets/widgets/custom_snack_bar.dart';
 import 'package:fbissalama/Widgets/widgets/main_buttom.dart';
+import 'package:fbissalama/models/provider_controller.dart';
 import 'package:fbissalama/utilities/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:provider/provider.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
-  SignInScreenState createState() => SignInScreenState();
-}
-
-class SignInScreenState extends State<SignInScreen> {
-  final TextEditingController number = TextEditingController();
-  String pos = 'Agency';
-
-  // final TextEditingController password = TextEditingController();
-  firebase_auth.FirebaseAuth firebaseAuth = firebase_auth.FirebaseAuth.instance;
-
-  @override
   Widget build(BuildContext context) {
+    final TextEditingController number = TextEditingController();
+    // final TextEditingController password = TextEditingController();
+    String pos = 'Agency';
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -97,19 +90,28 @@ class SignInScreenState extends State<SignInScreen> {
                         const SizedBox(
                           width: 15,
                         ),
-                        DropDown('Agency', Colors.grey.shade500,
-                            Colors.grey.shade500, Colors.grey.shade200, 15.0,
-                            items: const ['Agency', 'Clerk', 'Passenger'],
-                            callbackDropDown:(newValue){
-                                pos = newValue;
-                            }),
+                        Consumer<ProviderController>(
+                            builder: (context, value, child) {
+                          return DropDown(value, 'Agency', Colors.grey.shade500,
+                              Colors.grey.shade500, Colors.grey.shade200, 15.0,
+                              items: const ['Agency', 'Clerk', 'Passenger'],
+                              callbackDropDown: (newValue) {
+                            pos = newValue;
+                          });
+                        }),
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    myTextField(size.width / 4.5 , size.width / 1.10, number, false, const CountryPicker(),
-                        'Phone Number...', TextInputType.number),
+                    myTextField(
+                        size.width / 4.5,
+                        size.width / 1.10,
+                        number,
+                        false,
+                        const CountryPicker(),
+                        'Phone Number...',
+                        TextInputType.number),
                     // MyTextField(
                     //     size,
                     //     password,
@@ -128,10 +130,9 @@ class SignInScreenState extends State<SignInScreen> {
                     const SizedBox(
                       height: 50,
                     ),
-                    //TODO
-                    //merge login button with google button
                     MainButton(
-                        const [Colors.white10, Colors.white54, Colors.white10], "",
+                        const [Colors.white10, Colors.white54, Colors.white10],
+                        "",
                         text: Text(
                           "Login",
                           style: GoogleFonts.adamina(
@@ -144,19 +145,18 @@ class SignInScreenState extends State<SignInScreen> {
                         ), onTap: () async {
                       if (number.text.isNotEmpty) {
                         try {
-                          //TODO
                           //when we need to add the user to firestore
                           Auth().addUser(number.text, pos);
-                          if (number.text[0] == "0" &&
-                              number.text[1] == "9") {
-                            Navigator.of(context).pushAndRemoveUntil(
+                          if (number.text[0] == "0" && number.text[1] == "9") {
+                            Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => OTP(
-                                  number:
-                                      CountryPickerState().dialCodeDigits +
-                                          number.text.substring(1),
-                                )
-                              ), (route) => false
+                                  builder: (context) => OTP(
+                                        number: Provider.of<ProviderController>(
+                                                    context,
+                                                    listen: false)
+                                                .dialCodeDigits +
+                                            number.text.substring(1),
+                                      )),
                             );
                           } else {
                             HapticFeedback.lightImpact();
@@ -165,8 +165,8 @@ class SignInScreenState extends State<SignInScreen> {
                             );
                           }
                         } catch (e) {
-
-                          customSnackBar(context, e.toString(), 3, Colors.white24, Colors.brown, 17);
+                          customSnackBar(context, e.toString(), 3,
+                              Colors.white24, Colors.brown, 17);
                         }
                       } else {
                         HapticFeedback.lightImpact();
@@ -205,8 +205,8 @@ class SignInScreenState extends State<SignInScreen> {
                     Text(
                       "Book your Journeys Online",
                       style: GoogleFonts.lobster(
-                          textStyle:
-                              const TextStyle(fontSize: 25, color: Colors.white)),
+                          textStyle: const TextStyle(
+                              fontSize: 25, color: Colors.white)),
                     ),
                   ],
                 ),

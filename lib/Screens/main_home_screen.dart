@@ -32,7 +32,8 @@ class MainHome extends StatelessWidget {
                   Auth().logout(context);
                   Navigator.of(context).pushReplacementNamed('/');
                 } catch (e) {
-                  customSnackBar(context, e.toString(), 3, Colors.white24, Colors.brown, 17);
+                  customSnackBar(context, e.toString(), 3, Colors.white24,
+                      Colors.brown, 17);
                 }
               },
             )

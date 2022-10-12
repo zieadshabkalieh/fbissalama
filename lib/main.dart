@@ -6,6 +6,7 @@ import 'package:fbissalama/Screens/current_journey.dart';
 import 'package:fbissalama/Screens/main_home_screen.dart';
 import 'package:fbissalama/Screens/sign_in_screen.dart';
 import 'package:fbissalama/Screens/splashscreen.dart';
+import 'package:fbissalama/models/provider_controller.dart';
 import 'package:fbissalama/models/following.dart';
 import 'package:fbissalama/models/verifying.dart';
 import 'package:fbissalama/utilities/router.dart';
@@ -23,6 +24,9 @@ void main() async {
         ChangeNotifierProvider<Following>(
           create: (BuildContext context) => Following(),
         ),
+        ChangeNotifierProvider<ProviderController>(
+          create: (BuildContext context) => ProviderController(),
+        ),
         ChangeNotifierProvider<Verifying>(
           create: (BuildContext context) => Verifying(),
         ),
@@ -33,7 +37,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         title: "Bissalama",
         onGenerateRoute: onGenerate,
-        initialRoute: AppRoutes.mainHomePage,
+        initialRoute: AppRoutes.splashScreenPage,
         routes: {
           AppRoutes.loginPage: (context) => const SignInScreen(),
           AppRoutes.splashScreenPage: (context) => const SplashScreen(),

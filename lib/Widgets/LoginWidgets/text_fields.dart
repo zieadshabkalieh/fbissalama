@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
-Widget myTextField(double heightSize, double widthSize, TextEditingController controller, bool isPassword, Widget icon, String hintText, TextInputType textInputType){
+
+Widget myTextField(
+    double heightSize,
+    double widthSize,
+    TextEditingController controller,
+    bool isPassword,
+    Widget icon,
+    String hintText,
+    TextInputType textInputType) {
   return Container(
     height: heightSize,
     width: widthSize,

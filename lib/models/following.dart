@@ -1,12 +1,15 @@
 import 'package:fbissalama/models/favorite.dart';
 import 'package:flutter/material.dart';
-class Following extends ChangeNotifier{
+
+class Following extends ChangeNotifier {
   List<Favorite> list = [];
-  add(favorite){
+
+  add(favorite) {
     list.add(favorite);
     notifyListeners();
   }
-  remove(favorite){
+
+  remove(favorite) {
     list.remove(favorite);
     notifyListeners();
   }

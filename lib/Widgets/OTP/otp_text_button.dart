@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-Widget otpTextButton(String text, VoidCallback onPressed){
+
+Widget otpTextButton(String text, VoidCallback onPressed) {
   return TextButton(
     onPressed: onPressed,
     child: Text(

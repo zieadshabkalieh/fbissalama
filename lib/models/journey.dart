@@ -9,7 +9,16 @@ class Journey {
   final int price;
   final int? rate;
 
-  Journey({required this.agencyId, required this.journeyId, required this.sourceCity, required this.destinationCity, required this.agencyName, required this.journeyDate, required this.journeyTime, required this.price, this.rate});
+  Journey(
+      {required this.agencyId,
+      required this.journeyId,
+      required this.sourceCity,
+      required this.destinationCity,
+      required this.agencyName,
+      required this.journeyDate,
+      required this.journeyTime,
+      required this.price,
+      this.rate});
 
   Map<String, dynamic> toMap() {
     return {

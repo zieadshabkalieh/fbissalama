@@ -24,34 +24,34 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Colors.blueAccent,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Image.asset(
-                  AppAssets.busIcon,
-                  fit: BoxFit.fitHeight,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Image.asset(
+                AppAssets.busIcon,
+                fit: BoxFit.fitHeight,
               ),
-              const SizedBox(
-                height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Bissalama",
+              style: GoogleFonts.lobster(
+                textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
-              Text(
-                "Bissalama",
-                style: GoogleFonts.lobster(
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SpinKitPouringHourGlassRefined(
-                  color: Colors.white, size: 50.0),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SpinKitPouringHourGlassRefined(
+                color: Colors.white, size: 50.0),
+          ],
+        ),
       ),
     );
   }

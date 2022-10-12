@@ -18,7 +18,6 @@ class OTP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Auth().verifyPhoneNumber(context, number);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -84,8 +83,7 @@ class OTP extends StatelessWidget {
                         Countdown(
                           seconds: 60,
                           build: (BuildContext context, double time) => Text(
-                            //TODO pad 00
-                            '00:00:${time.round()}',
+                            '00:00:${time.round().toString().padLeft(2, "0")}',
                             style: GoogleFonts.sahitya(
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,

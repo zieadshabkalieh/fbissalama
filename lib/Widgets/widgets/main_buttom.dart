@@ -8,7 +8,8 @@ class MainButton extends StatelessWidget {
   final List<Color> colors;
 
   const MainButton(
-      this.colors,this.assetName,{
+    this.colors,
+    this.assetName, {
     Key? key,
     required this.text,
     required this.onTap,
@@ -29,22 +30,22 @@ class MainButton extends StatelessWidget {
             gradient: LinearGradient(colors: colors),
           ),
           child: Center(
-            child: assetName != "" ? Row(
-              mainAxisAlignment:
-              MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  assetName,
-                  height: 25,
-                  width: 25,
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                text
-              ],
-            ) : text
-          ),
+              child: assetName != ""
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          assetName,
+                          height: 25,
+                          width: 25,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        text
+                      ],
+                    )
+                  : text),
         ),
       ),
     );
